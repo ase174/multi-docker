@@ -6,7 +6,7 @@ before_install:
   - docker build -t allisone4/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run allisone4/react-test npm test -- --coverage
+  - docker run -e CI=true allisone4/react-test npm test
 
 after_success:
   - docker build -t allisone4/multi-client ./client
@@ -20,3 +20,4 @@ after_success:
   - docker push allisone4/multi-nginx
   - docker push allisone4/multi-server
   - docker push allisone4/multi-worker
+
